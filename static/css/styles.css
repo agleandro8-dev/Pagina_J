@@ -1,0 +1,424 @@
+body {
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo-principal {
+    color: #ff4081;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 1s ease-out;
+}
+
+.tarjeta-animada {
+    border-radius: 20px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #ffffff;
+}
+
+.tarjeta-animada:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.boton-magico {
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.boton-magico:hover {
+    transform: scale(1.03);
+}
+
+.cumple-img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: contain;
+    border: 3px solid #ff4081;
+    background-color: #f8f9fa;
+    /* Fondo suave por si hay franjas vacías */
+}
+
+.poema-box {
+    border-left: 5px solid #dc3545;
+    background: #fff5f5 !important;
+}
+
+.oculto {
+    display: none !important;
+}
+
+.contenido-revelado {
+    display: block;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- ESTILOS DE LA FLOR --- */
+.flor-container {
+    height: 600px;
+    width: 100%;
+    max-width: 400px;
+    background: #080f1a;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    transform: scale(0.6);
+    transform-origin: top center;
+}
+
+.flor-container .glass {
+    height: 500px;
+    width: 350px;
+    background: #122139;
+    border-radius: 200px 200px 0px 0px;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.flor-container .glass:before {
+    content: "";
+    height: 30px;
+    width: 30px;
+    transform-origin: center;
+    border: 20px solid #122139;
+    border-radius: 100%;
+    position: absolute;
+    left: 140px;
+    top: -50px;
+}
+
+.flor-container .glass:after {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 100%;
+    background: #a52a2a;
+    top: 100%;
+    left: 0%;
+}
+
+.flor-container .shine {
+    width: 15px;
+    height: 250px;
+    background: white;
+    opacity: 0.2;
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    border-radius: 100px;
+    z-index: 10;
+}
+
+.flor-container .shine:before {
+    content: "";
+    width: 15px;
+    height: 30px;
+    position: absolute;
+    background: white;
+    top: 270px;
+    border-radius: 100px;
+}
+
+.flor-container .petals>div {
+    position: absolute;
+    background: #d52d58;
+    width: 60px;
+    height: 90px;
+    top: 150px;
+    transition: all 0.5s ease-out;
+}
+
+.flor-container .petals>div:nth-child(1) {
+    border-radius: 15px;
+    box-shadow: 0px 0px 40px rgba(245, 148, 184, 1);
+    left: 50%;
+    transform: translateX(-50%);
+    top: 150px;
+    background: #d52d58;
+}
+
+.flor-container .petals>div:nth-child(2),
+.flor-container .petals>div:nth-child(4),
+.flor-container .petals>div:nth-child(6) {
+    background: #b81b43;
+    left: calc(50% - 30px);
+    border-radius: 0px 40px 0px 40px;
+    transform-origin: bottom right;
+}
+
+.flor-container .petals>div:nth-child(3),
+.flor-container .petals>div:nth-child(5),
+.flor-container .petals>div:nth-child(7) {
+    background: #b81b43;
+    left: calc(50% + 15px);
+    border-radius: 40px 0px 40px 0px;
+    transform-origin: bottom left;
+}
+
+.flor-container .petals>div:nth-child(2) {
+    z-index: 5;
+    background: #ab1a3f;
+    top: 165px;
+    height: 100px;
+    box-shadow: 0px 0px 40px rgba(245, 148, 184, .5);
+    animation: bloom2 3s ease-in-out forwards;
+}
+
+.flor-container .petals>div:nth-child(3) {
+    z-index: 4;
+    background: #ab1a3f;
+    top: 165px;
+    height: 100px;
+    box-shadow: 0px 0px 40px rgba(245, 148, 184, .5);
+    animation: bloom3 3s ease-in-out forwards, glowing 2.5s ease-in-out infinite;
+}
+
+.flor-container .petals>div:nth-child(4) {
+    z-index: 3;
+    background: #b81b43;
+    top: 160px;
+    height: 105px;
+    box-shadow: 0px 0px 40px rgba(245, 148, 184, .5);
+    animation: bloom4 3s ease-in-out forwards, glowing 2.5s ease-in-out infinite;
+}
+
+.flor-container .petals>div:nth-child(5) {
+    z-index: 2;
+    background: #b81b43;
+    top: 160px;
+    height: 105px;
+    box-shadow: 0px 0px 40px rgba(245, 148, 184, .5);
+    animation: bloom5 3s ease-in-out forwards, glowing 2.5s ease-in-out infinite;
+}
+
+.flor-container .petals>div:nth-child(6) {
+    z-index: 1;
+    background: #c9204b;
+    top: 150px;
+    height: 100px;
+    box-shadow: 0px 0px 40px rgba(245, 148, 184, .3);
+    animation: bloom6 3s ease-in-out forwards, glowing 2.5s ease-in-out infinite;
+}
+
+.flor-container .petals>div:nth-child(7) {
+    z-index: 0;
+    background: #c9204b;
+    top: 150px;
+    height: 100px;
+    box-shadow: 0px 0px 40px rgba(245, 148, 184, .3);
+    animation: bloom7 3s ease-in-out forwards, glowing 2.5s ease-in-out infinite;
+}
+
+.flor-container .deadPetals>div {
+    position: absolute;
+    background: #d52d58;
+    width: 60px;
+    height: 90px;
+    top: 150px;
+    border-radius: 40px 0px 40px 0px;
+    box-shadow: 0px 0px 40px rgba(245, 148, 184, .5);
+    transition: all 0.5s ease-out;
+}
+
+.flor-container .deadPetals>div:nth-child(1) {
+    left: 40%;
+    transform: rotate(-30deg);
+    animation: falling 20s 4s ease-in-out infinite;
+}
+
+.flor-container .deadPetals>div:nth-child(2) {
+    left: 45%;
+    transform: rotate(-30deg);
+    background: #b81b43;
+    animation: falling 20s 8s ease-in-out infinite;
+}
+
+.flor-container .deadPetals>div:nth-child(3) {
+    left: 55%;
+    transform: rotate(-30deg);
+    animation: falling 20s 12s ease-in-out infinite;
+}
+
+.flor-container .deadPetals>div:nth-child(4) {
+    left: 60%;
+    transform: rotate(-30deg);
+    background: #c9204b;
+    animation: falling 20s 16s ease-in-out infinite;
+}
+
+.flor-container .leaves>div:nth-last-child(1) {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background: #338f37;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 100px;
+}
+
+.flor-container .leaves>div:nth-child(1) {
+    position: absolute;
+    width: 10px;
+    height: 280px;
+    background: #054c05;
+    top: 230px;
+    left: 50%;
+    transform: translateX(-5%);
+    border-radius: 0 0 100px 100px;
+}
+
+.flor-container .leaves>div:nth-child(2) {
+    position: absolute;
+    width: 45px;
+    height: 75px;
+    border-radius: 10px 60px 30px 60px;
+    background: #054c05;
+    transform-origin: bottom;
+    transform: rotate(-30deg);
+    top: 300px;
+    left: calc(50% - 35px);
+    box-shadow: inset 5px 5px #066406;
+}
+
+.flor-container .leaves>div:nth-child(3) {
+    position: absolute;
+    width: 45px;
+    height: 75px;
+    border-radius: 60px 1px 60px 30px;
+    background: #054c05;
+    transform-origin: bottom;
+    transform: rotate(30deg);
+    top: 260px;
+    left: calc(50% + 5px);
+    box-shadow: inset -5px 5px #066406;
+}
+
+.flor-container .thorns>div {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 150px;
+}
+
+.flor-container .thorns>div:nth-child(odd) {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #054c05;
+    left: calc(50% + 5px);
+}
+
+.flor-container .thorns>div:nth-child(even) {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #054c05;
+    left: calc(50% - 15px);
+}
+
+.flor-container .thorns>div:nth-child(1) {
+    top: 340px;
+}
+
+.flor-container .thorns>div:nth-child(2) {
+    top: 290px;
+}
+
+.flor-container .thorns>div:nth-child(4) {
+    top: 390px;
+}
+
+.flor-container .texto-flor {
+    position: absolute;
+    bottom: 0px;
+    padding: 10px;
+}
+
+@keyframes bloom2 {
+    100% {
+        transform: rotate(-45deg);
+        background: #ab1a3f;
+    }
+}
+
+@keyframes bloom3 {
+    100% {
+        transform: rotate(50deg);
+    }
+}
+
+@keyframes bloom4 {
+    100% {
+        transform: rotate(-25deg);
+    }
+}
+
+@keyframes bloom5 {
+    100% {
+        transform: rotate(25deg);
+    }
+}
+
+@keyframes bloom6 {
+    100% {
+        transform: rotate(-10deg);
+    }
+}
+
+@keyframes bloom7 {
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes glowing {
+    50% {
+        background: #d7365f;
+        box-shadow: 0px 0px 40px rgba(245, 148, 184, 1);
+    }
+}
+
+@keyframes falling {
+    0% {
+        top: 150px;
+        opacity: 1;
+    }
+
+    70% {
+        background: #9d193b;
+        box-shadow: 0px 0px 0px rgba(245, 148, 184, 0);
+        opacity: 1;
+    }
+
+    100% {
+        top: 500px;
+        opacity: 0;
+    }
+}

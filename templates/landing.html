@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light"
+    style="background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);">
+    <div class="text-center p-5 rounded-4 shadow-lg bg-white" style="transform: translateY(-5%);">
+        <h1 class="display-5 text-dark mb-4 fw-bold">Bienvenido</h1>
+        <p class="lead text-muted mb-5">Está a punto de ingresar al sistema.</p>
+        <a href="{{ url_for('principal') }}"
+            class="btn btn-primary btn-lg px-5 py-3 shadow-sm fs-4 fw-bold rounded-pill"
+            style="transition: all 0.3s ease;">
+            Haga clic aquí para ser dirigido a la página principal del sistema
+        </a>
+    </div>
+</div>
+<style>
+    .btn-primary:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+</style>
+{% endblock %}

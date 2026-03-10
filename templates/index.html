@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Overlay de Inicialización -->
+{% include 'animacion_entrada.html' %}
+
+<div class="container text-center mt-5 mb-5">
+
+    <!-- Mensaje principal (ahora arriba de todo) -->
+    <div class="card shadow-sm border-0 mb-5 mx-auto"
+        style="max-width: 600px; background-color: rgba(255,255,255,0.9);">
+        <div class="card-body p-4">
+            <h1 class="display-3 fw-bold mb-3 titulo-principal">Para ti</h1>
+            <h4 class="text-primary mb-3 fw-bold">¡Feliz Cumpleaños<br>{{ datos.nombre }}!</h4>
+            <img src="{{ url_for('static', filename=datos.imagen) }}"
+                class="img-fluid rounded shadow-sm mb-3 cumple-img">
+            <p class="text-muted fst-italic lead">{{ datos.mensaje }}</p>
+        </div>
+    </div>
+
+    <!-- Las 3 Opciones -->
+    <div class="row g-4 d-flex justify-content-center align-items-stretch">
+        <!-- Contenedor 1: Para ti (con Rosa) -->
+        <div class="col-md-4">
+            <div class="card shadow h-100 border-0 tarjeta-animada" style="background:#080f1a;">
+                <div class="card-body d-flex flex-column align-items-center justify-content-start p-4">
+                    <div title="Recuerda que mi sistema es modular y escalable y evitará a toda costa el código espagueti"
+                        class="w-100 mb-3" data-bs-toggle="tooltip" data-bs-placement="top">
+                        <button class="btn btn-primary btn-lg rounded-pill shadow-sm px-4 boton-magico w-100"
+                            onclick="mostrarSeccion('seccion-para-ti')">
+                            Para ti ✨
+                        </button>
+                    </div>
+                    <!-- Se renderiza el componente modular enviando todo el CSS independiente -->
+                    <div id="seccion-para-ti" class="mt-3 oculto contenido-revelado w-100">
+                        {% include 'flor.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 2: Mi poema -->
+        <div class="col-md-4">
+            <div class="card shadow h-100 border-0 tarjeta-animada">
+                <div class="card-body d-flex flex-column align-items-center justify-content-start p-4">
+                    <button class="btn btn-danger btn-lg rounded-pill shadow-sm px-4 boton-magico w-100"
+                        onclick="mostrarSeccion('seccion-poema')">
+                        Mi poema 📖
+                    </button>
+                    <div id="seccion-poema" class="mt-3 oculto contenido-revelado text-start w-100">
+                        <div class="poema-box p-3 rounded bg-light border shadow-sm">
+                            <p class="mb-2 text-danger fs-5 font-monospace">Eres mi sol en la mañana,</p>
+                            <p class="mb-2 text-danger fs-5 font-monospace">la estrella de mi anochecer.</p>
+                            <p class="mb-2 text-danger fs-5 font-monospace">Hoy te celebro con el alma,</p>
+                            <p class="mb-0 text-danger fs-5 font-monospace">y te amaré hasta envejecer.</p>
+                            <p class="mb-2 text-danger fs-5 font-monospace">Mi querida amada mía,</p>
+                            <p class="mb-2 text-danger fs-5 font-monospace">La luz de mis ojos,</p>
+                            <p class="mb-2 text-danger fs-5 font-monospace">Para ti es mi vida,</p>
+                            <p class="mb-0 text-danger fs-5 font-monospace">y te amare hasta envejecer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 3: Una canción para ti -->
+        <div class="col-md-4">
+            <div class="card shadow h-100 border-0 tarjeta-animada">
+                <div class="card-body d-flex flex-column align-items-center justify-content-start p-4">
+                    <button
+                        class="btn btn-warning btn-lg text-white rounded-pill shadow-sm px-4 mb-3 boton-magico w-100"
+                        data-bs-toggle="modal" data-bs-target="#videoModal">
+                        Una canción para ti 🎵
+                    </button>
+                    <!-- Eliminada la #seccion-cancion directa, ahora carga un modal con pantalla completa -->
+                    <p class="text-muted small mt-3 fw-bold">Espero que esta melodía te haga sonreír. 💕</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para el Video Fullscreen Responsivo -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <!-- modal-dialog-centered para centrar el video, modal-xl para que aproveche todo el espacio web -->
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-dark text-white border-0 shadow-lg" style="border-radius: 20px;">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title" id="videoModalLabel">Una canción para ti 🎵</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <!-- Ratio 16:9 garantiza proporciones correctas tanto en Desktop como en Móvil -->
+                <div class="ratio ratio-16x9">
+                    <video id="videoCancion" controls class="w-100 h-100 object-fit-contain"
+                        style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+                        <source src="{{ url_for('static', filename=datos.video) }}" type="video/mp4">
+                        Tu navegador no soporta la etiqueta de video.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

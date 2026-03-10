@@ -1,0 +1,448 @@
+<!-- ===================================================
+     ANIMACIÓN DE ENTRADA - OVERLAY COMPLETO
+     Incluido al inicio del block content de index.html
+     =================================================== -->
+
+<style>
+    /* ---- Fuente romántica ---- */
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
+
+    .texto-romantico {
+        font-family: 'Dancing Script', cursive;
+    }
+
+    /* ---- Overlay principal ---- */
+    #intro-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 999999;
+        background: radial-gradient(ellipse at center, #ffffff 0%, #ffe4e1 60%, #ffb7c5 100%);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 1.2s ease;
+    }
+
+    /* ---- Fase 1: Tulipanes ---- */
+    #fase-tulipanes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+        transition: opacity 1s ease, transform 1s ease;
+    }
+
+    /* ---- Animaciones tallo y flor ---- */
+    .tulip-stem {
+        stroke-dasharray: 320;
+        stroke-dashoffset: 320;
+        animation: growStem 2s ease forwards;
+    }
+
+    .tulip-leaf {
+        opacity: 0;
+        animation: popIn 0.8s ease forwards 1.5s;
+    }
+
+    .tulip-flower {
+        transform: scale(0);
+        transform-origin: center bottom;
+        animation: bloomFlower 1s ease forwards 2s;
+    }
+
+    @keyframes growStem {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes popIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes bloomFlower {
+        to {
+            transform: scale(1);
+        }
+    }
+
+    /* Texto animado */
+    .anim-txt {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUpText 1.5s ease forwards;
+    }
+
+    @keyframes fadeUpText {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ---- Fase 2: Cerezo ---- */
+    #fase-cerezo {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+    }
+
+    /* ---- Pétalos de cerezo ---- */
+    .cherry-petal {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        background: linear-gradient(135deg, #ffb7c5, #ff8da1);
+        border-radius: 50% 0 50% 0;
+        pointer-events: none;
+        animation: petalFall linear infinite;
+        box-shadow: 0 2px 6px rgba(255, 140, 170, 0.4);
+    }
+
+    @keyframes petalFall {
+        0% {
+            transform: translateY(-30px) rotate(0deg);
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 0.9;
+        }
+
+        90% {
+            opacity: 0.7;
+        }
+
+        100% {
+            transform: translateY(260px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* ---- Contador hover ---- */
+    .counter-box {
+        transition: transform 0.3s ease;
+    }
+
+    .counter-box:hover {
+        transform: scale(1.02);
+    }
+
+    /* ---- Botón pulso ---- */
+    #btn-entrar {
+        animation: pulseBtn 1.5s infinite alternate;
+    }
+
+    @keyframes pulseBtn {
+        from {
+            box-shadow: 0 0 0px rgba(220, 53, 69, 0.4);
+        }
+
+        to {
+            box-shadow: 0 0 20px rgba(220, 53, 69, 0.7);
+        }
+    }
+
+    /* Responsive: en pantallas muy pequeñas reducir svg */
+    @media (max-width: 400px) {
+        #tulipanes-container svg {
+            width: 22% !important;
+        }
+    }
+</style>
+
+<!-- ============ OVERLAY ============ -->
+<div id="intro-overlay">
+
+    <!-- *** FASE 1: TULIPANES *** -->
+    <div id="fase-tulipanes">
+
+        <h1 class="texto-romantico text-danger fw-bold mb-4 anim-txt text-center"
+            style="font-size: clamp(2rem, 6vw, 3.5rem); animation-delay: 1.5s;">
+            Unas flores para ti 🌷
+        </h1>
+
+        <!-- Cuatro tulipanes responsivos -->
+        <div id="tulipanes-container" class="d-flex justify-content-center align-items-end"
+            style="width: 100%; max-width: 420px; height: auto; gap: 0;">
+
+            <!-- Tulipán 1 - Izquierdo inclinado -->
+            <svg viewBox="0 0 100 300" style="width:24%; height:auto; transform:translateY(12%);">
+                <path d="M50 300 Q58 200 42 90" fill="none" stroke="#4a7c2e" stroke-width="6" class="tulip-stem" />
+                <path d="M50 270 C 5 200 15 130 42 100 C 35 155 42 220 50 270" fill="#6abe45" class="tulip-leaf" />
+                <path d="M50 250 C 72 200 78 140 62 85 C 62 145 58 205 50 250" fill="#54a035" class="tulip-leaf"
+                    style="animation-delay:1.8s;" />
+                <g class="tulip-flower" style="transform-origin:42px 90px; animation-delay:2.2s;">
+                    <path d="M42 90 C 18 88 12 40 24 15 C 33 30 38 38 42 28 C 46 38 51 30 60 15 C 72 40 66 88 42 90"
+                        fill="#e8365e" />
+                    <path d="M42 90 C 22 88 20 48 30 22 C 34 50 37 70 42 90" fill="#f55070" opacity="0.8" />
+                    <path d="M42 90 C 62 88 64 48 54 22 C 50 50 47 70 42 90" fill="#c8204a" opacity="0.8" />
+                </g>
+            </svg>
+
+            <!-- Tulipán 2 - Centro-Izquierda (más alto) -->
+            <svg viewBox="0 0 100 300" style="width:28%; height:auto;">
+                <path d="M50 300 Q48 155 50 65" fill="none" stroke="#4a7c2e" stroke-width="7" class="tulip-stem"
+                    style="animation-delay:0.2s;" />
+                <path d="M50 280 C 8 215 5 110 28 65 C 25 130 36 205 50 280" fill="#54a035" class="tulip-leaf"
+                    style="animation-delay:1.7s;" />
+                <path d="M50 260 C 82 210 88 145 70 100 C 66 155 60 205 50 260" fill="#6abe45" class="tulip-leaf"
+                    style="animation-delay:1.9s;" />
+                <g class="tulip-flower" style="transform-origin:50px 65px; animation-delay:2.4s;">
+                    <path d="M50 65 C 16 65 12 5 26 -18 C 36 2 42 10 50 -5 C 58 10 64 2 74 -18 C 88 5 84 65 50 65"
+                        fill="#e8365e" />
+                    <path d="M50 65 C 24 65 22 12 34 -12 C 39 20 44 42 50 65" fill="#f55070" opacity="0.8" />
+                    <path d="M50 65 C 76 65 78 12 66 -12 C 61 20 56 42 50 65" fill="#c8204a" opacity="0.8" />
+                </g>
+            </svg>
+
+            <!-- Tulipán 3 - Centro-Derecha (pequeño, cerrado) -->
+            <svg viewBox="0 0 100 300" style="width:20%; height:auto; transform:translateY(22%);">
+                <path d="M50 300 Q50 158 50 90" fill="none" stroke="#4a7c2e" stroke-width="5" class="tulip-stem"
+                    style="animation-delay:0.4s;" />
+                <path d="M50 275 C 68 215 76 155 66 95 C 60 160 55 215 50 275" fill="#6abe45" class="tulip-leaf"
+                    style="animation-delay:1.9s;" />
+                <g class="tulip-flower" style="transform-origin:50px 90px; animation-delay:2.6s;">
+                    <path d="M50 90 C 37 90 34 52 40 30 C 47 46 50 48 50 38 C 50 48 53 46 60 30 C 66 52 63 90 50 90"
+                        fill="#e8365e" />
+                    <path d="M50 90 C 40 90 38 52 43 30 C 46 48 48 68 50 90" fill="#f55070" opacity="0.8" />
+                </g>
+            </svg>
+
+            <!-- Tulipán 4 - Derecho inclinado -->
+            <svg viewBox="0 0 100 300" style="width:24%; height:auto; transform:translateY(8%);">
+                <path d="M50 300 Q42 200 58 90" fill="none" stroke="#4a7c2e" stroke-width="6" class="tulip-stem"
+                    style="animation-delay:0.6s;" />
+                <path d="M50 285 C 18 225 12 148 36 105 C 36 168 42 228 50 285" fill="#54a035" class="tulip-leaf"
+                    style="animation-delay:1.8s;" />
+                <path d="M50 268 C 86 208 94 132 74 92 C 70 152 62 210 50 268" fill="#6abe45" class="tulip-leaf"
+                    style="animation-delay:2.0s;" />
+                <g class="tulip-flower" style="transform-origin:58px 90px; animation-delay:2.8s;">
+                    <path d="M58 90 C 34 88 28 40 40 15 C 48 30 54 38 58 28 C 62 38 67 30 76 15 C 88 40 82 88 58 90"
+                        fill="#e8365e" />
+                    <path d="M58 90 C 38 88 36 48 46 22 C 50 50 53 70 58 90" fill="#f55070" opacity="0.8" />
+                    <path d="M58 90 C 78 88 80 48 70 22 C 66 50 63 70 58 90" fill="#c8204a" opacity="0.8" />
+                </g>
+            </svg>
+
+        </div><!-- /tulipanes-container -->
+    </div><!-- /fase-tulipanes -->
+
+
+    <!-- *** FASE 2: CEREZO + CONTADOR + BOTÓN *** -->
+    <div id="fase-cerezo">
+
+        <h2 class="texto-romantico text-danger fw-bold mb-3 text-center" style="font-size: clamp(1.6rem, 5vw, 2.8rem);">
+            Bajo los cerezos... 🌸
+        </h2>
+
+        <!-- Árbol de cerezos SVG -->
+        <div class="position-relative mx-auto mb-3" style="width:min(260px, 70vw); height:min(260px, 70vw);">
+            <svg viewBox="0 0 300 300" width="100%" height="100%"
+                style="filter: drop-shadow(0 10px 20px rgba(255,100,150,0.35));">
+                <!-- Tronco y ramas -->
+                <path d="M150 300 C 148 250 145 200 150 155
+                 M150 155 C 120 150 85 135 55 105
+                 M150 155 C 175 145 210 130 245 100
+                 M150 155 C 148 130 148 100 150 75
+                 M115 138 C 85 115 68 88 60 62
+                 M185 138 C 215 112 232 85 240 60
+                 M98 118 C 58 98 42 70 38 45
+                 M202 118 C 242 95 258 68 262 42" fill="none" stroke="#5c3317" stroke-width="14" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <!-- Copas - capa base oscura -->
+                <circle cx="55" cy="105" r="55" fill="#f06880" opacity="0.75" />
+                <circle cx="245" cy="100" r="55" fill="#f06880" opacity="0.75" />
+                <circle cx="150" cy="65" r="68" fill="#f06880" opacity="0.75" />
+                <circle cx="60" cy="62" r="42" fill="#f06880" opacity="0.75" />
+                <circle cx="240" cy="60" r="42" fill="#f06880" opacity="0.75" />
+                <!-- Capa media rosada -->
+                <circle cx="95" cy="88" r="58" fill="#ff8da1" opacity="0.9" />
+                <circle cx="205" cy="85" r="58" fill="#ff8da1" opacity="0.9" />
+                <circle cx="150" cy="100" r="48" fill="#ff8da1" opacity="0.9" />
+                <circle cx="50" cy="72" r="44" fill="#ff8da1" opacity="0.85" />
+                <circle cx="250" cy="68" r="44" fill="#ff8da1" opacity="0.85" />
+                <!-- Capa frontal clara -->
+                <circle cx="125" cy="65" r="56" fill="#ffb7c5" opacity="0.95" />
+                <circle cx="175" cy="62" r="56" fill="#ffb7c5" opacity="0.95" />
+                <circle cx="78" cy="115" r="40" fill="#ffb7c5" opacity="0.9" />
+                <circle cx="222" cy="112" r="40" fill="#ffb7c5" opacity="0.9" />
+                <circle cx="150" cy="135" r="38" fill="#ffb7c5" opacity="0.95" />
+                <!-- Toques claros -->
+                <circle cx="108" cy="52" r="28" fill="#ffe4e1" opacity="0.95" />
+                <circle cx="192" cy="50" r="28" fill="#ffe4e1" opacity="0.95" />
+                <circle cx="150" cy="88" r="32" fill="#ffe4e1" opacity="0.95" />
+                <circle cx="68" cy="78" r="22" fill="#ffe4e1" opacity="0.9" />
+                <circle cx="232" cy="75" r="22" fill="#ffe4e1" opacity="0.9" />
+            </svg>
+            <!-- Pétalos cayendo -->
+            <div id="cherry-petals"
+                style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:5;">
+            </div>
+        </div>
+
+        <!-- Contador -->
+        <div class="bg-white rounded-4 shadow p-3 mb-3 text-center"
+            style="width:min(96%, 520px); border: 2px solid #ffb7c5;">
+            <p class="texto-romantico text-dark fw-bold mb-2" style="font-size: clamp(1.1rem, 3vw, 1.4rem);">Nuestro
+                tiempo juntos</p>
+            <div id="contador" class="d-flex flex-wrap justify-content-center gap-2"></div>
+        </div>
+
+        <!-- Mensaje romántico -->
+        <p class="texto-romantico text-danger fst-italic fw-bold text-center px-3 mb-3" style="font-size: clamp(1.1rem, 3vw, 1.5rem); line-height:1.35;
+              text-shadow:1px 1px 3px rgba(255,255,255,0.8);">
+            "Este tiempo contigo ha sido un honor<br>y yo te prometo contigo envejecer."
+        </p>
+
+        <!-- Botón entrar -->
+        <button id="btn-entrar" class="btn btn-danger btn-lg rounded-pill px-5 py-2 mb-4 fw-bold texto-romantico"
+            style="font-size: clamp(1.2rem, 4vw, 1.7rem); letter-spacing:1px; cursor:pointer;">
+            Entrar a mi corazón 💖
+        </button>
+
+    </div><!-- /fase-cerezo -->
+
+</div><!-- /intro-overlay -->
+
+
+<script>
+    (function () {
+        var overlay = document.getElementById('intro-overlay');
+        var fase1 = document.getElementById('fase-tulipanes');
+        var fase2 = document.getElementById('fase-cerezo');
+        var btnEntrar = document.getElementById('btn-entrar');
+        var petalsBox = document.getElementById('cherry-petals');
+        var contadorDiv = document.getElementById('contador');
+        var timerInterval;
+
+        // Bloquear scroll del body mientras está el overlay
+        document.body.style.overflow = 'hidden';
+
+        // ---- TRANSICIÓN FASE 1 → FASE 2 (a los 5.5s) ----
+        setTimeout(function () {
+            // Fade out fase 1
+            fase1.style.opacity = '0';
+            fase1.style.transform = 'scale(1.08)';
+
+            setTimeout(function () {
+                // Ocultar fase 1
+                fase1.style.display = 'none';
+
+                // Mostrar fase 2
+                fase2.style.display = 'flex';
+                // Forzar reflow antes de la transición de opacidad
+                void fase2.offsetHeight;
+                fase2.style.opacity = '1';
+
+                // Iniciar pétalos y contador
+                lanzarPetalos();
+                timerInterval = setInterval(actualizarContador, 1000);
+                actualizarContador();
+            }, 900);
+        }, 5500);
+
+        // ---- BOTÓN: ENTRAR ----
+        btnEntrar.addEventListener('click', function () {
+            clearInterval(timerInterval);
+            overlay.style.opacity = '0';
+            document.body.style.overflow = '';
+
+            setTimeout(function () {
+                overlay.style.display = 'none';
+                // Scroll al inicio del contenido principal
+                var main = document.querySelector('.container');
+                if (main) {
+                    main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 1200);
+        });
+
+        // ---- CONTADOR ----
+        function actualizarContador() {
+            var inicio = new Date('2026-01-10T00:00:00');
+            var ahora = new Date();
+
+            if (ahora < inicio) {
+                contadorDiv.innerHTML =
+                    '<span class="text-danger fw-bold">¡El tiempo juntos empezará pronto!</span>';
+                return;
+            }
+
+            var diffMs = ahora - inicio;
+            var totalSeg = Math.floor(diffMs / 1000);
+            var seg = totalSeg % 60;
+            var totalMin = Math.floor(totalSeg / 60);
+            var min = totalMin % 60;
+            var totalHrs = Math.floor(totalMin / 60);
+            var hrs = totalHrs % 24;
+            var totalDias = Math.floor(totalHrs / 24);
+            var semanas = Math.floor(totalDias / 7);
+            var dias = totalDias % 7;
+
+            // Años y meses aproximados
+            var anos = ahora.getFullYear() - inicio.getFullYear();
+            var meses = ahora.getMonth() - inicio.getMonth();
+            if (meses < 0) { meses += 12; anos--; }
+            if (ahora.getDate() < inicio.getDate()) { meses--; if (meses < 0) { meses = 11; anos--; } }
+
+            function bloque(num, label) {
+                return '<div style="min-width:54px;" class="text-center px-1">' +
+                    '<div class="fw-bold text-danger" style="font-size:clamp(1.4rem,4vw,2rem);">' + num + '</div>' +
+                    '<div class="text-muted text-uppercase" style="font-size:0.6rem;letter-spacing:1px;">' + label + '</div>' +
+                    '</div>';
+            }
+
+            contadorDiv.innerHTML =
+                bloque(anos, 'Años') +
+                bloque(meses, 'Meses') +
+                bloque(semanas, 'Sem.') +
+                bloque(dias, 'Días') +
+                bloque(pad(hrs), 'Hrs') +
+                bloque(pad(min), 'Min') +
+                bloque(pad(seg), 'Seg');
+        }
+
+        function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+        // ---- PÉTALOS DE CEREZO ----
+        function lanzarPetalos() {
+            for (var i = 0; i < 35; i++) {
+                crearPetalo(i * 280);
+            }
+        }
+
+        function crearPetalo(delay) {
+            setTimeout(function () {
+                var p = document.createElement('div');
+                p.className = 'cherry-petal';
+                var left = (Math.random() * 85 + 5);
+                var dur = (Math.random() * 2.5 + 2.5).toFixed(1);
+                var size = (Math.random() * 8 + 10);
+                p.style.left = left + '%';
+                p.style.top = '-20px';
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.animationDuration = dur + 's';
+                p.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
+                p.style.animationIterationCount = 'infinite';
+                petalsBox.appendChild(p);
+            }, delay);
+        }
+
+    })();
+</script>

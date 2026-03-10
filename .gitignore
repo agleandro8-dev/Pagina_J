@@ -1,0 +1,32 @@
+# Entornos virtuales
+venv/
+env/
+.env/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Variables de entorno
+.env
+*.env
+
+# Bases de datos
+*.db
+*.sqlite3
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
